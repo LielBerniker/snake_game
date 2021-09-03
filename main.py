@@ -10,7 +10,7 @@ if __name__ == '__main__':
     white = (255, 255, 255)
     black = (0, 0, 0)
     red = (213, 50, 80)
-    pink = (255,131,250)
+    pink = (255, 131, 250)
 
     dis_width = 800
     dis_height = 600
@@ -60,21 +60,9 @@ if __name__ == '__main__':
         mesg = font_style.render(msg, True, color)
         screen.blit(mesg, [dis_width / 6, dis_height / 3])
 
-
-    def collect_toy(x, y, toyx, toyy):
-        if (toyx <= x <= toyx + float(toy_block)) and (toyy <= y <= toyy + float(toy_block)):
-            return True
-        elif (x <= toyx <= x + float(snake_block)) and (toyy <= y <= toyy + float(toy_block)):
-            return True
-        elif (x <= toyx <= x + float(snake_block)) and (y <= toyy <= y + float(snake_block)):
-            return True
-        elif (toyx <= x <= toyx + float(toy_block)) and (y <= toyy <= y + float(snake_block)):
-            return True
-        return False
-
-
-    def draw_toy(toyx, toyy,rand_num):
+    def draw_toy(toyx, toyy, rand_num):
         screen.blit(toys_container[rand_num], (toyx, toyy))
+
 
     def gameLoop():
         game_over = False
@@ -133,8 +121,7 @@ if __name__ == '__main__':
             y1 += y1_change
             screen.fill(black)
             screen.blit(bg, (0, 0))
-            draw_toy(toy_x,toy_y,rand_num)
-            # pygame.draw.rect(screen, pink, [toy_x, toy_y, toy_block, toy_block])
+            draw_toy(toy_x, toy_y, rand_num)
             snake_Head = []
             snake_Head.append(x1)
             snake_Head.append(y1)
@@ -150,7 +137,7 @@ if __name__ == '__main__':
             Your_score(Length_of_snake - 1)
             pygame.display.update()
             current_time = timeit.default_timer()
-            if(current_time - count_time >0.4):
+            if current_time - count_time > 0.4:
                 state = state * (-1)
                 count_time = current_time
 
@@ -159,7 +146,6 @@ if __name__ == '__main__':
                 toy_y = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
                 Length_of_snake += 1
                 rand_num = random.randrange(len(toys_container))
-
 
             clock.tick(snake_speed)
 
