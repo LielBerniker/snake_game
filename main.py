@@ -32,23 +32,23 @@ if __name__ == '__main__':
 
     def gameLoop(ggi: Game_General_Info):
         gsi = Game_Specific_Info(ggi)
+        go_on = ggi.begin_screen(pygame)
+        if go_on == 0:
+            gsi.game_over = True
+            gsi.game_close = False
 
         while not gsi.game_over:
 
             while gsi.game_close:
-                ggi.screen.fill(ggi.black)
-                ggi.screen.blit(bg, (0, 0))
-                ggi.message("You Lost! Press C-Play Again or Q-Quit")
-                ggi.Your_score(gsi.Length_of_snake - 1)
-                pygame.display.update()
+                # ggi.screen.fill(ggi.black)
+                # ggi.screen.blit(bg, (0, 0))
+                # ggi.message("You Lost! Press C-Play Again or Q-Quit")
+                # ggi.Your_score(gsi.Length_of_snake - 1)
+                # pygame.display.update()
 
-                for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_q:
-                            gsi.game_over = True
-                            gsi.game_close = False
-                        if event.key == pygame.K_c:
-                            gameLoop(ggi)
+                 gameLoop(ggi)
+
+
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
